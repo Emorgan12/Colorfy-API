@@ -1,9 +1,7 @@
-numpy==1.15.2
-matplotlib==2.1.2
-scipy==1.1.0
-Flask==1.0.2
-spotipy==2.4.4
-Pillow==7.1.1
-pigpio==1.42
-scikit_learn==0.20.1
-rpi_ws281x==4.2.2
+numpy
+scikit-learn
+matplotlib
+scipy
+Pillow
+fastapi
+uvicorn[standard]
