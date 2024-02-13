@@ -26,7 +26,9 @@ jobs:
       with:
         context: .
         file: ./Dockerfile
-        platforms: linux/amd64,linux/arm64/v8
+        platforms: linux/amd64, linux/arm64/v8, linux/arm/v7
         push: true
-        tags: ${{ vars.DOCKER_USERNAME }}/colorfy-api:latest
+        tags: |
+          ${{ vars.DOCKER_USERNAME }}/colorfy-api:latest
+          ${{ vars.DOCKER_USERNAME }}/colorfy-api:${{ github.run_number }}
 
