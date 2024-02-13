@@ -21,12 +21,6 @@ jobs:
         username: ${{ vars.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Download static files
-      uses: actions/download-artifact@v4
-      with:
-        name: static
-        path: static
-
     - name: Build and push
       uses: docker/build-push-action@v5
       with:
