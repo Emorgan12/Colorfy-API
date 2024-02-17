@@ -28,19 +28,12 @@ class Values(BaseModel):
     rgb: RGB
     hsv: HSV
 
-def is_url(possible_url: str) -> bool:
-    try:
-        urlparse(possible_url)
-    except ValueError:
-        return False
-    return True
-
 def is_spotify_CDN(url: str) -> bool:
     parsed_url = urlparse(url)
     return parsed_url.netloc == SPOTIFY_CDN_URL
 
 @app.get("/", response_model=Values)
-async def colorfy(image_url: str = Query(..., title="Image URL", description="The Spotify CDN URL (or album cover ID) of the album artwork to be colorfied"),
+async def colorfy(image_url: str = Query(..., title="Image URL", description="The Spotify CDN URL of the album artwork to be colorfied"),
                   
                   k: int = Query(8, title="Number of clusters", description="Number of clusters to form"),
                   
@@ -50,11 +43,8 @@ async def colorfy(image_url: str = Query(..., title="Image URL", description="Th
                   width: int = 100,
                   height: int = 100):
     
-    if is_url(image_url):
-        if not is_spotify_CDN(image_url):
-            raise HTTPException(status_code=400, detail="Must be a link to Spotify's CDN")
-    else:
-        image_url = f"https://i.scdn.co/image/{image_url}"
+    if not is_spotify_CDN(image_url):
+        raise HTTPException(status_code=400, detail="Must be a link to Spotify's CDN")
     
     size = (width, height)
 
