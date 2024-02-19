@@ -61,10 +61,15 @@ async def colorfy(image_url: str = Query(..., title="Image URL", description="Th
     r, g, b = background_color.best_color(k=k, color_tol=color_tol)
     h, s, v = rgb_to_hsv(r/255, g/255, b/255)
     
-    return {"rgb":{"r": int(r),
-                    "g": int(g),
-                    "b": int(b)},
-             
-            "hsv":{"h": h,
-                    "s": s,
-                    "v": v}}
+    return {
+        "rgb": {
+            "r": int(r),
+            "g": int(g),
+            "b": int(b)
+        },
+        "hsv": {
+            "h": h,
+            "s": s,
+            "v": v
+        }
+    }
