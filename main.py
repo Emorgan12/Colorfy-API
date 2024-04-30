@@ -43,9 +43,6 @@ async def colorfy(image_url: str = Query(..., title="Image URL", description="Th
                   width: int = 100,
                   height: int = 100):
     
-    if not is_spotify_CDN(image_url):
-        raise HTTPException(status_code=400, detail="Must be a link to Spotify's CDN")
-    
     size = (width, height)
 
     #attempt download
